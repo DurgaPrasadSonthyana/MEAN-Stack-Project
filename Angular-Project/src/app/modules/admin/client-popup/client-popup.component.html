@@ -1,0 +1,342 @@
+<div fxLayout="column">
+
+    <mat-card class="head">
+      <h4>Client Details</h4>
+      <button mat-button class="button" (click)="openDialog(addDepartmentDialog)">+</button>
+    </mat-card>
+  
+    <mat-card>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="end">
+          <mat-form-field appearance="outline" style="width: 30%;">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+          </mat-form-field>
+        </div>
+  
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+            
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>S.No</th>
+              <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="clientNumber">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Number</th>
+              <td mat-cell *matCellDef="let element">{{ element.clientNumber }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="organization">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Organization</th>
+              <td mat-cell *matCellDef="let element">{{ element.organization }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="department">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+              <td mat-cell *matCellDef="let element">{{ element.department }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="addressLine">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Address Line</th>
+              <td mat-cell *matCellDef="let element">{{ element.addressLine }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="country">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+              <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="state">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+              <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="city">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+              <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="pincode">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Pincode</th>
+              <td mat-cell *matCellDef="let element">{{ element.pincode }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="edit(element, editDepartmentDialog)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+              
+            </ng-container>
+  
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="warn" (click)="delete(element)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell">No data matching the filter</td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+      </div>
+    </mat-card>
+  
+    <ng-template #addDepartmentDialog>
+      <h2 mat-dialog-title>Add Client</h2>
+  
+      <mat-dialog-content>
+        <form [formGroup]="departmentForm" (ngSubmit)="submit()">
+
+          <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Client Name</mat-label>
+            <input matInput placeholder="" formControlName="name" required>
+            <mat-error *ngIf="departmentForm.controls.name.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.name.hasError('pattern')">
+              Please enter valid Name
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Client Number</mat-label>
+            <input matInput placeholder="" formControlName="clientNumber" required numbersOnly maxlength="10" minlength="10">
+            <mat-error *ngIf="departmentForm.controls.clientNumber.hasError('required')" >
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.clientNumber.hasError('pattern')">
+              Please enter valid Number
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Organization</mat-label>
+            <input matInput placeholder="" formControlName="organization" required>
+            <mat-error *ngIf="departmentForm.controls.organization.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.organization.hasError('pattern')">
+              Please enter valid Organization name
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Department</mat-label>
+            <input matInput placeholder="" formControlName="department" required>
+            <mat-error *ngIf="departmentForm.controls.department.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.department.hasError('pattern')">
+              Please enter valid Department name
+            </mat-error>
+          </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Address Line</mat-label>
+            <input matInput placeholder="" formControlName="addressLine" required>
+            <mat-error *ngIf="departmentForm.controls.addressLine.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" required>
+              <mat-option *ngFor=" let list of countryList" [value]="list.country"> {{list.country}} </mat-option>
+              <!-- <mat-option>Female</mat-option>
+              <mat-option>Other</mat-option> -->
+            </mat-select>            
+            <mat-error *ngIf="departmentForm.controls.country.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>State</mat-label>
+            <mat-select formControlName="state" required>
+              <mat-option *ngFor=" let list of stateList" [value]="list.state"> {{list.state}} </mat-option>
+            </mat-select>            
+          <mat-error *ngIf="departmentForm.controls.state.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" required>
+              <mat-option *ngFor=" let list of cityList" [value]="list.city"> {{list.city}} </mat-option>
+            </mat-select>            
+          <mat-error *ngIf="departmentForm.controls.city.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  </div>
+          <mat-form-field appearance="outline" style="width: 50%;">
+            <mat-label>Pincode</mat-label>
+            <input matInput placeholder="" formControlName="pincode" required numbersOnly maxlength="6" minlength="6">
+            <mat-error *ngIf="departmentForm.controls.pincode.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.pincode.hasError('pattern')">
+              Please enter valid Pincode
+            </mat-error>
+          </mat-form-field>
+  
+        </form>
+      </mat-dialog-content>
+  
+      <mat-dialog-actions align="end">
+        <button mat-button (click)="cancelDialog()">Cancel</button>
+        <button mat-button color="primary" [disabled]="!departmentForm.valid" (click)="submit()">Submit</button>
+      </mat-dialog-actions>
+    </ng-template>
+  
+    <ng-template #editDepartmentDialog>
+      <h2 mat-dialog-title>Edit Details</h2>
+      <mat-dialog-content>
+        <form [formGroup]="departmentForm" (ngSubmit)="submit()">
+
+          <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Client Name</mat-label>
+            <input matInput placeholder="" formControlName="name" required>
+            <mat-error *ngIf="departmentForm.controls.name.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.name.hasError('pattern')">
+              Please enter valid Name
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Client Number</mat-label>
+            <input matInput placeholder="" formControlName="clientNumber" required numbersOnly maxlength="10" minlength="10">
+            <mat-error *ngIf="departmentForm.controls.clientNumber.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.clientNumber.hasError('pattern')">
+              Please enter valid Number
+            </mat-error>
+          </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Organization</mat-label>
+            <input matInput placeholder="" formControlName="organization" required>
+            <mat-error *ngIf="departmentForm.controls.organization.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.organization.hasError('pattern')">
+              Please enter valid Organization name
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Department</mat-label>
+            <input matInput placeholder="" formControlName="department" required>
+            <mat-error *ngIf="departmentForm.controls.department.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.department.hasError('pattern')">
+              Please enter valid Department name
+            </mat-error>
+          </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Address Line</mat-label>
+            <input matInput placeholder="" formControlName="addressLine" required>
+            <mat-error *ngIf="departmentForm.controls.addressLine.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" required>
+              <mat-option *ngFor=" let list of countryList" [value]="list.country"> {{list.country}} </mat-option>
+              <!-- <mat-option>Female</mat-option>
+              <mat-option>Other</mat-option> -->
+            </mat-select>                  
+            <mat-error *ngIf="departmentForm.controls.country.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>State</mat-label>
+            <mat-select formControlName="state" required>
+              <mat-option *ngFor=" let list of stateList" [value]="list.state"> {{list.state}} </mat-option>
+            </mat-select>                
+            <mat-error *ngIf="departmentForm.controls.state.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" required>
+              <mat-option *ngFor=" let list of cityList" [value]="list.city"> {{list.city}} </mat-option>
+            </mat-select>            
+            <mat-error *ngIf="departmentForm.controls.city.hasError('required')">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+</div>
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Pincode</mat-label>
+            <input matInput placeholder="" formControlName="pincode" required numbersOnly maxlength="6" minlength="6">
+            <mat-error *ngIf="departmentForm.controls.pincode.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.controls.pincode.hasError('pattern')">
+              Please enter valid Pincode
+            </mat-error>
+          </mat-form-field>
+  
+        </form>
+      </mat-dialog-content>
+  
+      <mat-dialog-actions align="end">
+        <button mat-button (click)="cancelDialog()">Cancel</button>
+        <button mat-button color="primary" [disabled]="!departmentForm.valid" (click)="submit()">Save</button>
+      </mat-dialog-actions>
+    </ng-template>
+  </div>
+  

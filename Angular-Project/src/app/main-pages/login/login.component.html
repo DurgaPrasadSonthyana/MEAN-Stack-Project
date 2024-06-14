@@ -1,0 +1,111 @@
+<!-- 
+<div class="body">
+
+<form novalidate [formGroup]="loginForm" fxLayoutAlign="center">
+  <div id="login-container" class="mat-elevation-z8">
+    <h2 class="primary">Login</h2>
+    <div fxLayout="column" >
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email address" formControlName="email" required />
+      <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+        Please enter Email-id
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required />
+      <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+        Please enter Password
+      </mat-error>
+    </mat-form-field>
+
+    <mat-slide-toggle color="primary">
+      <span class="toggle-btn">Remember me</span>
+    </mat-slide-toggle>
+    <br />
+    </div>
+
+    <div>
+      <button mat-raised-button type="button" class="Sign-Up-btn">
+        Sign Up
+      </button>
+      <button mat-raised-button type="submit" color="primary" class="Login-btn" (click)="onLogin()">
+        Login
+      </button>
+    </div>
+
+    <div class="footer-sec">
+      <br />
+      <br />
+      <hr />
+      <a class="primary">Forgot Password?</a>
+      <br />
+    </div>
+  </div>
+</form>
+</div> -->
+
+
+<div fxLayoutAlign="center center" fxFlexFill class="main-dev" [class.alternative]="isTrue">
+  <mat-card fxFlex="30">
+    <mat-toolbar color="primary">Login Page</mat-toolbar>
+    <form [formGroup]="loginForm" novalidate fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+
+      <!-- <div class="form-group">
+        <label>User Name</label>
+        <input type="text" formControlName="email" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+      	<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+        <i class="fas fa-eye" id="eye"></i>
+      	<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div> -->
+
+
+      <mat-form-field class="mx-2 my-3 field-input" appearance="outline">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">mail</mat-icon>
+        <input type="text"  matInput placeholder="Email" formControlName="email" class="form-control"
+        required >
+        <mat-error class="invalid-feedback" *ngIf="f.email.errors">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.pattern">Please enter a valid email address</div>
+          <div *ngIf="f.email.errors.maxlength">Email should be maximum 50 characters</div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="mx-2 my-3 field-input" appearance="outline">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix class="mat-icon-sm mb-2 mr-2 secondary-text-color">lock</mat-icon>
+        <input matInput  required placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'"
+                class="form-control"  />
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error class="login-error" *ngIf="f.password.errors">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password should be minimum 8 characters</div>
+          <div *ngIf="f.password.errors.maxlength">Password should be maximum 16 characters</div>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="div-p">
+        <span> <input type="checkbox" formControlName="rememberMe" /> Remember Me </span>
+      </div>
+      <br>
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Login</button>
+
+      <button mat-raised-button color="accent" type="submit" (click)="onChangeTheme()">Change</button>
+
+      <div fxLayoutAlign="space-between center">
+        <small><a routerLink="../signup">Sign up</a></small>
+        <small><a routerLink="../forgot-password">Forgot Password</a></small>
+      </div>

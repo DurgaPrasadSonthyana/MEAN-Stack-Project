@@ -1,0 +1,230 @@
+<div fxLayout="column">
+    <mat-card class="head">
+        <h4> {{title}} </h4>
+    </mat-card>
+    <mat-card>
+
+        <form [formGroup]="companyForm">
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Full Company Name</mat-label>
+                    <input matInput placeholder="" formControlName="name" required>
+
+                    <mat-error *ngIf="companyForm.controls.name.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.name.hasError('pattern')">
+                        Please enter a valid Name
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Company Website</mat-label>
+                    <input matInput placeholder="" formControlName="website" required>
+
+                    <mat-error *ngIf="companyForm.controls.website.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.website.hasError('pattern')">
+                        Please enter a valid url
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>CIN</mat-label>
+                    <input matInput placeholder="" formControlName="cin" appCharNUmberOnly required  >
+
+                    <mat-error *ngIf="companyForm.controls.cin.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.cin.hasError('pattern')">
+                        Please enter a valid Name
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>GST Number</mat-label>
+                    <input matInput placeholder="" formControlName="gst" required>
+
+                    <mat-error *ngIf="companyForm.controls.gst.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.gst.hasError('pattern')">
+                        Please enter a valid Name
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Company Established Date</mat-label>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="est" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                    <mat-error *ngIf="companyForm.controls.est.hasError('required')">
+                        This field is required
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Primary Contact Email</mat-label>
+                    <input matInput placeholder="" formControlName="email" required>
+
+                    <mat-error *ngIf="companyForm.controls.email.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.email.hasError('pattern')">
+                        Please enter a valid E-Mail
+                    </mat-error>
+
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Primary Contact</mat-label>
+                    <input matInput placeholder="" formControlName="primary" numbersOnly
+                     required maxlength="10" minlength="10" >
+
+                    <mat-error *ngIf="companyForm.controls.primary.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.primary.hasError('pattern')">
+                        Please enter a valid Number
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Secondary Contact</mat-label>
+                    <input matInput placeholder="" formControlName="secondary" maxlength="10" >
+
+                    <mat-error *ngIf="companyForm.controls.secondary.hasError('pattern')">
+                        Please enter a valid Number
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Company Registered Address</mat-label>
+                    <input matInput placeholder="" formControlName="address" required>
+
+                    <mat-error *ngIf="companyForm.controls.address.hasError('required')">
+                        This field is required
+                    </mat-error>
+
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center" >
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Work Location Address</mat-label>
+                    <input matInput placeholder="" formControlName="waddress" required>
+
+                    <mat-error *ngIf="companyForm.controls.waddress.hasError('required')">
+                        This field is required
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="country" required>
+                        <mat-option *ngFor=" let list of countryList" [value]="list.id"> {{list.country}} </mat-option>
+                        <!-- <mat-option>Female</mat-option>
+                        <mat-option>Other</mat-option> -->
+                    </mat-select>
+                    <mat-error *ngIf="companyForm.controls.country.hasError('required')">
+                        This field is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>State</mat-label>
+                    <mat-select formControlName="state" required>
+                        <mat-option *ngFor=" let list of stateList" [value]="list.id"> {{list.state}} </mat-option>
+                        <!-- <mat-option>Female</mat-option>
+                        <mat-option>Other</mat-option> -->
+                    </mat-select>
+                    <mat-error *ngIf="companyForm.controls.state.hasError('required')">
+                        This field is required
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="start space-around">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>City</mat-label>
+                    <mat-select formControlName="city" required>
+                        <mat-option *ngFor=" let list of cityList" [value]="list.id"> {{list.city}} </mat-option>
+                        <!-- <mat-option>Female</mat-option>
+                        <mat-option>Other</mat-option> -->
+                    </mat-select>
+                    <mat-error *ngIf="companyForm.controls.city.hasError('required')">
+                        This field is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Pincode</mat-label>
+                    <input matInput placeholder="" formControlName="pincode" required>
+
+                    <mat-error *ngIf="companyForm.controls.pincode.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="companyForm.controls.pincode.hasError('pattern')">
+                        Please enter a valid Name
+                    </mat-error>
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center">
+
+                <button mat-raised-button color="primary" (click)="toggleEdit()">
+                    {{ isEditing ? 'Save' : 'Edit' }}
+                </button> &nbsp;
+
+                <button mat-raised-button color="warn" (click)="cancelEdit()" *ngIf="isEditing">
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+    </mat-card>
+</div>

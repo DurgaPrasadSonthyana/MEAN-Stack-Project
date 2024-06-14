@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+@use '@angular/cdk';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.alignment-center{
+    text-align: center;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,108 @@
+<div fxLayout="column">
+    <mat-card class="head">
+        <h4>Work Location</h4>
+        <!-- <button class="btn">+</button> -->
+        <button mat-button class="btn" (click)="addNew()" *ngIf="!isHide">
+            <mat-icon>add</mat-icon>
+        </button>
+
+    </mat-card>
+    <mat-card *ngIf="!isHide">
+        <div fxLayout="column">
+            <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                </mat-form-field>
+            </div>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="department">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+                        <td mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="element.editable; else nonEditable">
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="element.department">
+                                </mat-form-field>
+                            </ng-container>
+                            <ng-template #nonEditable>
+                                {{element.department}}
+                            </ng-template>
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-radio-group [(ngModel)]="element.status">
+                                <mat-radio-button value="active" class="active">Active </mat-radio-button>
+                                <mat-radio-button value="inactive">Inactive</mat-radio-button>
+                            </mat-radio-group>
+                        </td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="element.editing; else editButton">
+                                <button mat-button (click)="save(element)">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-button color="warn" (click)="cancel(element)">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </ng-container>
+                            <ng-template #editButton>
+                                <button mat-icon-button (click)="edit(element)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </ng-template>
+                        </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell">No data matching the filter</td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5 , 10, 20, 50, 100]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </mat-card>
+
+    <mat-card *ngIf="isHide">
+        <form [formGroup]="departmentForm" (ngSubmit)="submit()">
+            <mat-form-field appearance="outline">
+                <mat-label>Department</mat-label>
+                <input matInput placeholder="" formControlName="name" required>
+
+                <mat-error *ngIf="departmentForm.controls.name.hasError('required')">
+                    This field is required
+                </mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="center">
+                <button mat-raised-button color="primary" type="submit">Submit</button> &nbsp;
+                <button mat-raised-button color="warn" type="button" (click)="back()">Cancel</button>
+            </div>
+
+        </form>
+    </mat-card>
+
+</div>

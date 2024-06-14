@@ -1,0 +1,21 @@
+<div fxLayout="row wrap">
+  <div fxLayout="column" *ngFor="let menu of menuList">
+    <mat-card>
+      <!-- <img mat-card-image src="assets/brama.png" id="img"> -->
+      <div>
+      <video mat-card-image #video id="video{{menu.id}}" class="video" [controls]="video === currentlyHoveredVideo"
+        (mouseenter)="playVideo(video)" (mouseleave)="pauseVideo(video)" (mouseenter)="restartVideo(video)">
+        <source [src]="menu.video" type="video/mp4">
+      </video>
+    </div>
+    <div>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{menu.title}}</mat-card-title>
+        <mat-card-subtitle>{{menu.production}} <br> {{menu.views}}</mat-card-subtitle>
+        <!-- <mat-card-subtitle>14M views 2 months ago</mat-card-subtitle> -->
+      </mat-card-header>
+      </div>
+    </mat-card>
+  </div>
+</div>

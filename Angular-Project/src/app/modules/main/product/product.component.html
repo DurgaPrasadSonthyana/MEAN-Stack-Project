@@ -1,0 +1,44 @@
+<div fxLayout="column">
+    <div class="card">
+        <h5 class="card" id="head">Coming Soon</h5>
+        <div fxLayout="row wrap">
+            <div fxLayout="column" *ngFor="let menu of menuList" id="bms">
+                <div class="card" id="top">
+                    <div class="corner-card">PROMOTED</div>
+                    <img class="card-img" [src]="menu.image" alt="Card image cap">
+                </div>
+                <div class="card" id="bottom">
+                    <div class="likes">
+                        <mat-icon style="color: rgb(45, 191, 45);">thumb_up</mat-icon>
+                        <span> {{menu.likes}}k</span>
+                        <span id="like">likes</span>
+                    </div>
+                </div>
+                <div class="movie">
+                    <h6>{{menu.movieName}}</h6>
+                </div>
+            </div>
+
+        </div>
+
+        <h5 class="card" id="head"> Now Showing</h5>
+        <div fxLayout="row wrap">
+            <div fxLayout="column" *ngFor="let menu of menuList" id="bms">
+                <div class="card" id="top">
+                    <img class="card-img" [src]="menu.image" alt="Card image cap">
+                </div>
+                <div class="card" id="bottom">
+                    <div class="likes">
+                        <mat-icon style="color: rgb(45, 191, 45);">thumb_up</mat-icon>
+                        <span> {{menu.likes}}k</span>
+                        <span id="like">likes</span>
+                    </div>
+                </div>
+                <div class="movie">
+                    <h6>{{menu.movieName}}</h6>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

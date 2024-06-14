@@ -1,0 +1,109 @@
+// #login-container {
+//     display: flex;
+//     flex-direction: column;
+//     padding: 1.7em;
+//     width: 400px;
+//     position: relative;
+//     justify-content: center;
+//     margin-top: 50px;
+//     border-radius: 15px;
+//   }
+  
+//   .Sign-Up-btn {
+//     margin-top: 2.5em;
+//     height: 2.5em;
+//   }
+//   .Login-btn {
+//     margin-top: 2.5em;
+//     height: 2.5em;
+//     float: right;
+//   }
+//   .footer-sec {
+//     text-align: center;
+//   }
+//   .footer-sec a {
+//     text-decoration: none;
+//   }
+//   .body{
+//     align-items: center;
+//   }
+:host{
+  background: #f9fbfe ;
+  color:#fff;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100  ;
+  background-image: url('./../../../assets/bg-2.jpg');
+}
+
+// .login-container {
+//   height: 100%;
+//   width: 100%;
+//   align-items: center;
+//   display: flex;
+// }
+
+// form {
+//   width: 100%;
+// }
+
+// .login-content {
+//   width: 400px;
+//   display: block;
+//   margin: 0 auto;
+// }
+
+// .login-toolbar {
+//   justify-content: center;
+// }
+
+// .mat-form-field {
+//   width: 100%;
+//   display: block;
+// }
+
+// .mat-raised-button {
+//   width: 100%;
+//   margin-top: 15px;
+// }
+
+.main-dev mat-card{
+  padding: 0px;
+}
+.login-form{
+  padding: 20px;
+}
+
+section{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// .container {
+//   display: flex;
+//  position: absolute;
+// }
+// .center {
+//   width: 400px; 
+//   padding: 10px;
+//   background: #5F85DB;
+//   color: #fff;
+//   font-weight: bold;
+//   font-family: Tahoma;
+// }
+
+.field-input{
+  max-height: 46px; 
+  border-radius: 4px;
+  font-size: 14px !important;// decrease the font size  to set height
+  .mat-input-element{ 
+    font-size: 16px !important;  //increase the size of input font
+  }
+}
+.div-p{
+  margin-top: 10px;
+}

@@ -1,0 +1,29 @@
+.mat-card {
+  width: 400px;
+  height: 250px;
+  border-radius: 13px;
+  background-color: black;
+  margin-left: 15px;
+}
+.poster {
+  width: 400px;
+  height: 250px;
+  border-radius: 15px;
+}
+.example-header-image {
+  background-image: url("../../../../assets/wb1.png");
+  background-size: cover;
+}
+
+.video {
+  width: 400px;
+  height: 250px;
+  border-radius: 15px;
+}
+.mat-card-title {
+  font-size: large;
+}
+.mat-card-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+}

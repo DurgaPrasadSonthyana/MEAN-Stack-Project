@@ -1,0 +1,28 @@
+<div fxLayout="column">
+  <div fxLayout="row wrap">
+
+   
+
+    <div class="card"  *ngFor="let menu of menuList" >
+      <img class="card-img-top" [src]="menu.image" alt="Card image cap">
+      <div class="card-img-overlay">
+        <p class="card-title-t" style="font-size: small; width: 50%;"> {{menu.itemName}} • ₹ {{menu.price}}</p>
+      </div>
+      <div class="card-body">
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <h5 class="card-title">{{menu.hotel}}</h5>
+          <button class="button">{{menu.rating}}★</button>
+        </div>
+     
+        <div>
+          <p class="card-text" style="font-size: small;">{{menu.itemsList}} • ₹250 for one<br>🕓 {{menu.duration}} min • {{menu.km}}kms </p>
+        </div>
+        <div class="dotted-line"></div>
+        <a href="#" class="card-link">Flat {{menu.discount}}% OFF + ₹ {{menu.cashback}} cashback</a>
+      </div>
+    </div>
+
+  </div><br>
+
+
+</div>

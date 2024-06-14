@@ -1,0 +1,83 @@
+<div fxLayout="column">
+    <mat-card class="head">
+        <h4> {{title}} </h4>
+    </mat-card>
+    <mat-card>
+
+        <form [formGroup]="crudForm">
+            <div fxLayout="row" fxLayoutGap="10" fxLayoutAlign="space-around center">
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput placeholder="" formControlName="name" required>
+
+                    <mat-error *ngIf="crudForm.controls.name.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="crudForm.controls.name.hasError('pattern')">
+                        Please enter a valid Name
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Primary Contact Email</mat-label>
+                    <input matInput placeholder="" formControlName="email" required>
+
+                    <mat-error *ngIf="crudForm.controls.email.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="crudForm.controls.email.hasError('pattern')">
+                        Please enter a valid E-Mail
+                    </mat-error>
+
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="" formControlName="phone" required>
+
+                    <mat-error *ngIf="crudForm.controls.phone.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="crudForm.controls.phone.hasError('pattern')">
+                        Please enter a valid Name
+                    </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Primary Contact</mat-label>
+                    <input matInput placeholder="" formControlName="primary" numbersOnly
+                     required maxlength="10" minlength="10" >
+
+                    <mat-error *ngIf="crudForm.controls.primary.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="crudForm.controls.primary.hasError('pattern')">
+                        Please enter a valid Number
+                    </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Primary Address</mat-label>
+                    <input matInput placeholder="" formControlName="" numbersOnly
+                     required maxlength="10" minlength="10" >
+
+                    <mat-error *ngIf="crudForm.controls.address.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-error *ngIf="crudForm.controls.address.hasError('pattern')">
+                        Please enter a valid Number
+                    </mat-error>
+                </mat-form-field>
+
+
+
+                
+            </div>
+        </form>
+    </mat-card>
+</div>
